@@ -6,12 +6,16 @@ import "./Home.css";
 // import lineUp from "../util/lineUp.json";
 import * as obj from "../util/lineUp.json";
 
-const START_DATE = "6/14/2022";
+const START_DATE = "6/10/2022";
 const { cardTypes, lineUp } = obj;
 const Home = (props) => {
     const [monsters, setMonsters] = useState([]);
     const [cardOfDay, setCardOfDay] = useState({});
     const [input, setInput] = useState("");
+
+    const onSearch = () => {
+        return monsters.filter((m) => m?.name.startsWith(input));
+    };
 
     function getNumberOfDays() {
         const date1 = new Date(START_DATE);
