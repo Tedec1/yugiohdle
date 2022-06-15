@@ -30,7 +30,7 @@ accepted card types:
 "Pendulum Flip Effect Monster",
 "Pendulum Effect Fusion Monster"
 
-todo list:
+### todo list:
 
 -   autocomplete search bar
 -   guess component
