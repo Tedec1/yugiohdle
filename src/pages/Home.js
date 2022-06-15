@@ -6,18 +6,13 @@ import "./Home.css";
 // import lineUp from "../util/lineUp.json";
 import * as obj from "../util/lineUp.json";
 
-const START_DATE = "6/15/2022";
+const START_DATE = "6/14/2022";
 const { cardTypes, lineUp } = obj;
 const Home = (props) => {
     const [monsters, setMonsters] = useState([]);
     const [cardOfDay, setCardOfDay] = useState({});
     const [input, setInput] = useState("");
-    const vaildCardType = (val) => {
-        return cardTypes.reduce((acc, n) => {
-            if (n === val) acc = true;
-            return acc;
-        }, false);
-    };
+
     function getNumberOfDays() {
         const date1 = new Date(START_DATE);
         const date2 = new Date();
@@ -90,7 +85,9 @@ const Home = (props) => {
             <div id="form-container">
                 <div>Enter a Guess</div>
                 <input onChange={handleInput}></input>
-                {cardOfDay != null ? <Card {...cardOfDay[0]} /> : null}
+                {cardOfDay && cardOfDay.length ? (
+                    <Card {...cardOfDay[0]} />
+                ) : null}
             </div>
         </div>
     );
