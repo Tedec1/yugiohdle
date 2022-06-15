@@ -1,21 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../components";
 import { callApi } from "../util/api";
+
 import "./Home.css";
 // import lineUp from "../util/lineUp.json";
 import * as obj from "../util/lineUp.json";
+
+const START_DATE = "6/15/2022";
 const { cardTypes, lineUp } = obj;
 const Home = (props) => {
     const [monsters, setMonsters] = useState([]);
-    const [cardOfDay, setCardOfDay] = useState(null);
+    const [cardOfDay, setCardOfDay] = useState({});
     const [input, setInput] = useState("");
-
     const vaildCardType = (val) => {
         return cardTypes.reduce((acc, n) => {
             if (n === val) acc = true;
             return acc;
         }, false);
     };
+    function getNumberOfDays() {
+        const date1 = new Date(START_DATE);
+        const date2 = new Date();
+
+        // One day in milliseconds
+        const oneDay = 1000 * 60 * 60 * 24;
+
+        // Calculating the time difference between two dates
+        const diffInTime = date2.getTime() - date1.getTime();
+
+        // Calculating the no. of days between two dates
+        const diffInDays = Math.floor(diffInTime / oneDay);
+        console.log(diffInDays);
+        return diffInDays;
+    }
 
     const populateMonsters = async () => {
         try {
@@ -60,35 +77,20 @@ const Home = (props) => {
         e.preventDefault();
         setInput(e.target.value);
     };
-    // useEffect(() => {
-    // const offset = new Date("March 28, 2022 12:17:00");
-    // const current = new Date();
-    // const index =
-    //     (current.getSeconds() - offset.getSeconds()) % lineUp.length || 4;
-    // console.log(index);
-    // setCardOfDay(monsters[index])
-    // });
+    useEffect(() => {
+        const setUpMonsters = async () => {
+            const index = getNumberOfDays() % lineUp.length;
+            setCardOfDay(await callApi({ id: lineUp[index] }));
+            console.log("cardOfDay :>> ", cardOfDay);
+        };
+        setUpMonsters();
+    }, []);
     return (
         <div {...props} id="home">
             <div id="form-container">
-                <div>enter a card type</div>
+                <div>Enter a Guess</div>
                 <input onChange={handleInput}></input>
-                <button onClick={() => populateMonsters()}>submit</button>
-                <button onClick={() => setMonstersToList()}>
-                    set monsters to shuffled list
-                </button>
-
-                <button onClick={() => getAllMonsters()}>getAllMonsters</button>
-                <button onClick={() => shuffleMonsters()}>
-                    shuffle dem monsters
-                </button>
-            </div>
-            {cardOfDay && <Card key={cardOfDay?.id} {...cardOfDay} />}
-            <div id="container">
-                {monsters &&
-                    monsters.map((c, i) =>
-                        c.id ? <Card key={i} {...c} /> : <Card key={i} id={c} />
-                    )}
+                {cardOfDay != null ? <Card {...cardOfDay[0]} /> : null}
             </div>
         </div>
     );
