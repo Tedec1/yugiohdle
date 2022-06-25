@@ -17,33 +17,35 @@ const Home = (props) => {
     //     return monsters.filter((m) => m?.name.startsWith(input));
     // };
 
-    const populateMonsters = async () => {
+    const populateMonsters = async (options) => {
         try {
             // setInput(vaildCardType(input) ? input : "normal monster");
+            // console.log(input);
             const data = await callApi({
-                type: input,
+                type: !input.length ? cardTypes.join(",") : input,
             });
             setMonsters(data);
-            console.log(data);
+            // console.log("28");
+            // console.log(data);
         } catch (error) {
             console.error(error);
         }
     };
     const setAutofillOptions = async () => {
         setOptions(
-            await monsters.reduce((acc, cur) => {
+            monsters.reduce((acc, cur) => {
                 acc.push(cur?.name);
                 return acc;
             }, [])
         );
-        console.log(options);
+        // console.log(options);
     };
     const getAllMonsters = async () => {
-        console.log(
-            cardTypes.slice(0, Math.round(cardTypes.length / 2)).join(",")
-        );
+        // console.log(
+        //     cardTypes.slice(0, Math.round(cardTypes.length / 2)).join(",")
+        // );
 
-        setInput(shuffle(cardTypes).join(","));
+        // setInput(shuffle(cardTypes).join(","));
 
         await populateMonsters();
 
