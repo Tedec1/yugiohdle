@@ -1,0 +1,7 @@
+.guess{
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr;
+    min-width: 700px;
+    min-height: 75px;
+    
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "../components";
+import { Card, Guess } from "../components";
 import { callApi, getNumberOfDays, shuffle } from "../util";
 
 import "./Home.css";
@@ -82,9 +82,19 @@ const Home = (props) => {
                     )}
                 />
                 {/* <input onChange={handleInput}></input> */}
-                {cardOfDay && cardOfDay.length ? (
+                <Guess
+                    monster={{
+                        name: "NAME",
+                        atk: "ATK",
+                        def: "DEF",
+                        attribute: "ATTR",
+                        level: "LVL",
+                    }}
+                />
+                <Guess monster={cardOfDay[0]} />
+                {/* {cardOfDay && cardOfDay.length ? (
                     <Card {...cardOfDay[0]} />
-                ) : null}
+                ) : null} */}
             </div>
         </div>
     );
