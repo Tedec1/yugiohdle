@@ -3,5 +3,7 @@
     grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr;
     min-width: 700px;
     min-height: 75px;
-    
+    align-items: center;
+    /* justify-content: center; */
+    justify-items: center;
 }
