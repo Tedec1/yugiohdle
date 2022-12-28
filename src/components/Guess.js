@@ -5,6 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CheckIcon from '@mui/icons-material/Check';
 import "./Guess.css";
+import { red, yellow } from "@mui/material/colors";
 const Guess = ({ isTitle, monster, ...props }) => {
     // console.log(monster);
     let cardOfDay = useContext(cardOfTheDayContext);
@@ -15,10 +16,10 @@ const Guess = ({ isTitle, monster, ...props }) => {
             if(isTitle){
                 return;
             }
-            if(cardOfDay[0]?.name === monster?.name)
-            {
-                setColor("#7affa7")
-            }
+            // if(cardOfDay[0]?.name === monster?.name)
+            // {
+            //     setColor("#7affa7")
+            // }
 
 
             
@@ -34,37 +35,37 @@ const Guess = ({ isTitle, monster, ...props }) => {
                 {monster?.atk}
                 {
                     !isTitle && ( 
-                    monster?.atk === cardOfDay[0]?.atk ? <CheckIcon /> :
-                    monster?.atk >= cardOfDay[0]?.atk ? <KeyboardArrowDownIcon /> :
-                    monster?.atk <= cardOfDay[0]?.atk ? <KeyboardArrowUpIcon /> :
-                    <CloseIcon />)
+                    monster?.atk === cardOfDay[0]?.atk ? <CheckIcon color="success" /> :
+                    monster?.atk >= cardOfDay[0]?.atk ? <KeyboardArrowDownIcon sx={{ color: yellow[600] }}/> :
+                    monster?.atk <= cardOfDay[0]?.atk ? <KeyboardArrowUpIcon sx={{ color: yellow[600] }}/> :
+                    <CloseIcon sx={{ color: red[600] }}/>)
                 }
             </div>
             <div className="guesschild def">
                 {monster?.def}
                 {
                     !isTitle && ( 
-                    monster?.def === cardOfDay[0]?.def ? <CheckIcon /> :
-                    monster?.def >= cardOfDay[0]?.def ? <KeyboardArrowDownIcon /> :
-                    monster?.def <= cardOfDay[0]?.def ? <KeyboardArrowUpIcon /> :
-                    <CloseIcon />)
+                    monster?.def === cardOfDay[0]?.def ? <CheckIcon color="success" /> :
+                    monster?.def >= cardOfDay[0]?.def ? <KeyboardArrowDownIcon sx={{ color: yellow[600] }}/> :
+                    monster?.def <= cardOfDay[0]?.def ? <KeyboardArrowUpIcon sx={{ color: yellow[600] }}/> :
+                    <CloseIcon sx={{ color: red[600] }}/>)
                 }
             </div>
             <div className="guesschild attr">{monster?.attribute || "?"}
             {
                 !isTitle && (
-                    monster?.attribute === cardOfDay[0]?.attribute ?  <CheckIcon /> :
-                    <CloseIcon />
+                    monster?.attribute === cardOfDay[0]?.attribute ?  <CheckIcon color="success" /> :
+                    <CloseIcon sx={{ color: red[600] }}/>
                 )
             }
             </div>
             <div className="guesschild lvl">{monster?.level || "?"}
             {
                     !isTitle && ( 
-                    monster?.level === cardOfDay[0]?.level ? <CheckIcon /> :
-                    monster?.level >= cardOfDay[0]?.level ? <KeyboardArrowDownIcon /> :
-                    monster?.level <= cardOfDay[0]?.level ? <KeyboardArrowUpIcon /> :
-                    <CloseIcon />)
+                    monster?.level === cardOfDay[0]?.level ? <CheckIcon color="success" /> :
+                    monster?.level >= cardOfDay[0]?.level ? <KeyboardArrowDownIcon sx={{ color: yellow[600] }}/> :
+                    monster?.level <= cardOfDay[0]?.level ? <KeyboardArrowUpIcon sx={{ color: yellow[600] }}/> :
+                    <CloseIcon sx={{ color: red[600] }}/>)
                 }
             </div>
         </div>
