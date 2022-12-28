@@ -49,7 +49,7 @@ const Home = (props) => {
         if(input === "null") return;
         if(monsterList.length < 1) return;
         if(guesses.filter(g=>g.name === input).length > 0) return;
-        console.log(monsterList);
+        // console.log(monsterList);
         const Guess = monsterList.filter((m)=>m.name === input)[0]
         setGuesses(guesses.concat(Guess))
         if(input === cardOfDay[0].name){
