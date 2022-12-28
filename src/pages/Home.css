@@ -29,13 +29,20 @@
   left: 0;
   width: 100%;
   text-align: center;
+  background-color: white;
 }
 /* Desktop mode*/
-@media all and (min-width:800px) and (max-width:1080px) {
+@media all and (min-width:500px) and (max-width:1080px) {
 /* put your css styles in here */
+.title{
+    max-width: 500px;
+}
 }
 
 /* phone mode*/
-@media all and (min-width:0px) and (max-width: 800px) {
-
+@media all and (min-width:0px) and (max-width: 500px) {
+    .title{
+        max-width: -webkit-fill-available;
+    }
 }
+

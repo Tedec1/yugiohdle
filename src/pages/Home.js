@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Card, Guess } from "../components";
 import { callApi, getNumberOfDays, shuffle } from "../util";
-
+import logo from  '../util/yu-gi-oh-logo.jpg'
 import "./Home.css";
 // import * as obj from "../util/lineUp.json";
 const obj = require("../util/lineUp.json")
@@ -63,6 +63,7 @@ const Home = (props) => {
     }
     return (
         <div {...props} id="home">
+            <img className="title" src={logo} alt={"yu-gi-oh"}></img>
             <div id="form-container">
                 <div>Enter a Guess</div>
                 <Autocomplete

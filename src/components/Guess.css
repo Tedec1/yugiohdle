@@ -12,12 +12,17 @@
     gap: 5px;   
 }
 /* Desktop mode*/
-@media all and (min-width:800px) and (max-width:1080px) {
-/* put your css styles in here */
+@media all and (min-width:500px) and (max-width:800px) {
+    .guess{
+        min-width: 480px;
+        font-size: small;
+        padding: 0%;
+        
+    }
 }
 
 /* phone mode*/
-@media all and (min-width:0px) and (max-width: 800px) {
+@media all and (min-width:0px) and (max-width: 500px) {
     .guess{
         min-width: 280px;
         font-size: smaller;
