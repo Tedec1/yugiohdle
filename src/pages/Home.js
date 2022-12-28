@@ -110,6 +110,9 @@ const Home = (props) => {
                     </div>
                 </cardOfTheDayContext.Provider>
             </div>
+            <div className="footer">
+                a side project by Jasper Mesenbrink
+            </div>
         </div>
     );
 };
