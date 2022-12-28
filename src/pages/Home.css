@@ -30,3 +30,12 @@
   width: 100%;
   text-align: center;
 }
+/* Desktop mode*/
+@media all and (min-width:800px) and (max-width:1080px) {
+/* put your css styles in here */
+}
+
+/* phone mode*/
+@media all and (min-width:0px) and (max-width: 800px) {
+
+}
