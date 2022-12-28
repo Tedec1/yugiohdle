@@ -3,7 +3,8 @@ import { Card, Guess } from "../components";
 import { callApi, getNumberOfDays, shuffle } from "../util";
 
 import "./Home.css";
-import * as obj from "../util/lineUp.json";
+// import * as obj from "../util/lineUp.json";
+const obj = require("../util/lineUp.json")
 import { Autocomplete, Button, TextField } from "@mui/material";
 export const cardOfTheDayContext = React.createContext({});
 const { cardTypes, lineUp } = obj;
