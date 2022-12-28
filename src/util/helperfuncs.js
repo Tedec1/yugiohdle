@@ -1,14 +1,16 @@
-export const START_DATE = "6-15-2022T00:00:01";
 export const getNumberOfDays = () => {
-    const date1 = new Date(START_DATE);
-    // const date2 = new Date();
+    const date1 = new Date(2022,6,15,0,0,1);
+    const date2 = new Date();
 
     // One day in milliseconds
     const oneDay = 1000 * 60 * 60 * 24;
 
     // Calculating the time difference between two dates
-    const diffInTime = Date.now() - date1.getTime();
-
+    const diffInTime = date2.getTime() - date1.getTime();
+    // console.log(diffInTime);
+    // console.log(date2.getTime());
+    // console.log(date1.getTime());
+    // console.log(date1)
     // Calculating the no. of days between two dates
     const diffInDays = Math.floor(diffInTime / oneDay);
     console.log(diffInDays);
