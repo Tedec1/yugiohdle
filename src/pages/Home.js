@@ -13,13 +13,14 @@ const Home = (props) => {
     const [options, setOptions] = useState([]);
     const [monsterList, setMonsterList] = useState([])
     const [guesses, setGuesses] = useState([])
+    const [gameOver,setGameOver] = useState(false)
     const getAllMonsters = async () => {
-        // console.log(cardTypes);
+    
         try {
             const data = await callApi({
                 type: cardTypes.join(","),
             });
-            // console.log(data);
+
             return data;
         } catch (error) {
             console.error(error);
@@ -51,8 +52,13 @@ const Home = (props) => {
         if(guesses.filter(g=>g.name === input).length > 0) return;
         console.log(monsterList);
         const Guess = monsterList.filter((m)=>m.name === input)[0]
-        
         setGuesses(guesses.concat(Guess))
+        if(input === cardOfDay[0].name){
+            alert("YOU WON!")
+            console.log("you won");
+            setGameOver(true)
+        }
+        
     }
     return (
         <div {...props} id="home">
@@ -60,6 +66,7 @@ const Home = (props) => {
                 <div>Enter a Guess</div>
                 <Autocomplete
                     disablePortal
+                    
                     loading={options.length < 1}
                     loadingText="Loading"
                     options={options}
@@ -69,40 +76,38 @@ const Home = (props) => {
                     )}
                     onChange={(e,v)=>{
                         setInput(v)
-                        // console.log(v)
+                
                     }}
                 />
                 <Button 
                 onClick={handleSubmit}
+                disabled={gameOver}
                 >Submit</Button>
     
                 <cardOfTheDayContext.Provider value={cardOfDay}>
                     <div className="guess-container">
                         <Guess
+                            isTitle={true}
                             monster={{
                                 name: "NAME",
                                 atk: "ATK",
                                 def: "DEF",
                                 attribute: "ATTR",
                                 level: "LVL",
-                                // card_sets: [{ set_name: "SETS" }],
                             }}
                         />
-                        <Guess
+                        {/* <Guess
                             monster={
                                 cardOfDay[0]
                                     ? cardOfDay[0]
                                     : { name: "loading" }
                             }
-                        />
+                        /> */}
                         {
-                        guesses && guesses.length && guesses.map( (g,i) => <Guess key={i} monster={g}/>)
+                        guesses && guesses.length ? guesses.map( (g,i) => <Guess key={i} monster={g}/>) : <div style={{textAlign:"center"}}> Guesses go here </div> 
                         }
                     </div>
                 </cardOfTheDayContext.Provider>
-                {/* {cardOfDay && cardOfDay.length ? (
-                    <Card {...cardOfDay[0]} />
-                ) : null} */}
             </div>
         </div>
     );
