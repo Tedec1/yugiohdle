@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
-
+/**
+ * 
+ * @param {Card} object requires atk: Number, def: Number, card_images: [Strings] 
+ * @returns 
+ */
 const Card = ({ atk, def, card_images, ...props }) => {
     useEffect(() => {
         console.log(props);

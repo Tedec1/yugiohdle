@@ -5,7 +5,7 @@ const Guess = ({ monster, ...props }) => {
     // console.log(monster);
     let cardOfDay = useContext(cardOfTheDayContext);
     useEffect(() => {
-        console.log(cardOfDay);
+        // console.log(cardOfDay);
     }, [cardOfDay]);
     return (
         <div className="guess">

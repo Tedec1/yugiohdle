@@ -3,17 +3,16 @@ import { Card, Guess } from "../components";
 import { callApi, getNumberOfDays, shuffle } from "../util";
 
 import "./Home.css";
-// import lineUp from "../util/lineUp.json";
 import * as obj from "../util/lineUp.json";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Button, TextField } from "@mui/material";
 export const cardOfTheDayContext = React.createContext({});
 const { cardTypes, lineUp } = obj;
 const Home = (props) => {
-    const [monsters, setMonsters] = useState([]);
     const [cardOfDay, setCardOfDay] = useState({});
     const [input, setInput] = useState("");
     const [options, setOptions] = useState([]);
-
+    const [monsterList, setMonsterList] = useState([])
+    const [guesses, setGuesses] = useState([])
     const getAllMonsters = async () => {
         // console.log(cardTypes);
         try {
@@ -26,11 +25,14 @@ const Home = (props) => {
             console.error(error);
         }
     };
-
+    /**
+     * calls the api to get all monsters and add them to the autocomplete.
+     */
     useEffect(() => {
         const setUpMonsters = async () => {
             console.log("useEffect is being run");
             const monsterList = await getAllMonsters();
+            setMonsterList(monsterList)
             const names = monsterList.reduce((acc, cur) => {
                 acc.push(cur?.name);
                 return acc;
@@ -42,7 +44,16 @@ const Home = (props) => {
         };
         setUpMonsters();
     }, []);
-
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(input === "null") return;
+        if(monsterList.length < 1) return;
+        if(guesses.filter(g=>g.name === input).length > 0) return;
+        console.log(monsterList);
+        const Guess = monsterList.filter((m)=>m.name === input)[0]
+        
+        setGuesses(guesses.concat(Guess))
+    }
     return (
         <div {...props} id="home">
             <div id="form-container">
@@ -56,9 +67,15 @@ const Home = (props) => {
                     renderInput={(params) => (
                         <TextField {...params} label="Monster" />
                     )}
+                    onChange={(e,v)=>{
+                        setInput(v)
+                        // console.log(v)
+                    }}
                 />
-                {/* <input onChange={handleInput}></input> */}
-
+                <Button 
+                onClick={handleSubmit}
+                >Submit</Button>
+    
                 <cardOfTheDayContext.Provider value={cardOfDay}>
                     <div className="guess-container">
                         <Guess
@@ -78,6 +95,9 @@ const Home = (props) => {
                                     : { name: "loading" }
                             }
                         />
+                        {
+                        guesses && guesses.length && guesses.map( (g,i) => <Guess key={i} monster={g}/>)
+                        }
                     </div>
                 </cardOfTheDayContext.Provider>
                 {/* {cardOfDay && cardOfDay.length ? (
