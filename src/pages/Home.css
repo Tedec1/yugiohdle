@@ -31,6 +31,11 @@
   text-align: center;
   background-color: white;
 }
+.question{
+    font-size: medium;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+}
 /* Desktop mode*/
 @media all and (min-width:500px) and (max-width:1080px) {
 /* put your css styles in here */
