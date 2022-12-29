@@ -13,7 +13,7 @@ export const getNumberOfDays = () => {
     // console.log(date1)
     // Calculating the no. of days between two dates
     const diffInDays = Math.floor(diffInTime / oneDay);
-    console.log(diffInDays);
+    // console.log(diffInDays);
     return diffInDays;
 };
 
