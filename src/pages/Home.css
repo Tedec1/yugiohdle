@@ -49,5 +49,8 @@
     .title{
         max-width: -webkit-fill-available;
     }
+    .footer{
+        font-size: smaller;
+    }
 }
 
