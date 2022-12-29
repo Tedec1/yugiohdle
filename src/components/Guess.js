@@ -16,13 +16,6 @@ const Guess = ({ isTitle, monster, ...props }) => {
             if(isTitle){
                 return;
             }
-            // if(cardOfDay[0]?.name === monster?.name)
-            // {
-            //     setColor("#7affa7")
-            // }
-
-
-            
         }
         setUp()
     },[])
