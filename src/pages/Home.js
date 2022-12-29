@@ -5,7 +5,7 @@ import logo from  '../util/yu-gi-oh-logo.jpg'
 import "./Home.css";
 // import * as obj from "../util/lineUp.json";
 const obj = require("../util/lineUp.json")
-import { Autocomplete, Button, TextField } from "@mui/material";
+import { Autocomplete, Button, Link, TextField } from "@mui/material";
 export const cardOfTheDayContext = React.createContext({});
 const { cardTypes, lineUp } = obj;
 const Home = (props) => {
@@ -106,7 +106,14 @@ const Home = (props) => {
                 </cardOfTheDayContext.Provider>
             </div>
             <div className="footer">
-                a side project by Jasper Mesenbrink
+                {"a side project by Jasper Mesenbrink "}
+                <Link 
+                component={Button}
+                href="https://github.com/jaspermsnbk/yugiohdle"
+                color={"primary"}
+                target="_blank"
+                >GitHub</Link> 
+                {/* <a href="https://github.com/jaspermsnbk/yugiohdle" target="_blank">GitHub</a> */}
             </div>
         </div>
     );
