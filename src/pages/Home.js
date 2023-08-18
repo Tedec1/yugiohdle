@@ -62,7 +62,7 @@ const Home = (props) => {
         <div {...props} id="home">
             <img className="title" src={logo} alt={"yu-gi-oh"}></img>
             <div id="form-container">
-                <div className="question">Enter a Guess</div>
+                <div className="question">Enter a couple of Guesses</div>
                 <Autocomplete
                     disablePortal
                     
